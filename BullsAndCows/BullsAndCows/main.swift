@@ -24,7 +24,7 @@ class BaseballGame {
                 // 입력받은 수를 정수 배열로 변환
                 let userGuess = userInput.compactMap { Int(String($0)) }
                 // 입력받은 수가 0을 포함하지 않고 중복된 수가 없는지 확인
-                if !userGuess.contains(0) && Set(userGuess).count == userGuess.count{
+                if Set(userGuess).count == userGuess.count{
                     var strikes = 0
                     var balls = 0
                     // 입력받은 수와 정답 비교
