@@ -23,7 +23,7 @@ class BaseballGame {
             if let userInput = readLine(), userInput.count == 3 {
                 // 입력받은 수를 정수 배열로 변환
                 let userGuess = userInput.compactMap { Int(String($0)) }
-                // 입력받은 수가 0을 포함하지 않고 중복된 수가 없는지 확인
+                // 중복된 수가 없는지 확인
                 if Set(userGuess).count == userGuess.count{
                     var strikes = 0
                     var balls = 0
