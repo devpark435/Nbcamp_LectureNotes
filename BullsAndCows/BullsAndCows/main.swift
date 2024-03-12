@@ -12,15 +12,23 @@ game.start()
 
 // MARK: - 야구 게임 클래스
 class BaseballGame {
-    // 게임 시작 함수
+    // MARK: -  게임 시작 함수
     func start() {
         let answer = makeAnswer()
         print("정답: \(answer)")
+        
     }
-    // 정답 생성 함수
-    func makeAnswer() -> Int {
-        // 1~9 랜덤 3자리 숫자
-        return Int.random(in: 111...999)
+    // MARK: -  정답 생성 함수
+    func makeAnswer() -> [Int] {
+        var answer = [Int]()
+        
+        for _ in 0..<3 {
+            let digit = Int.random(in: 1...9)
+            answer.append(digit)
+        }
+        
+        return answer
     }
+    
 }
 
