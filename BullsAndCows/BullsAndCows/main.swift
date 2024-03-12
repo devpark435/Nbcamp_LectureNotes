@@ -65,7 +65,11 @@ class BaseballGame {
         var answer = [Int]()
         
         while answer.count < 3 {
-            let digit = Int.random(in: 0...9)
+            var digit = Int.random(in: 0...9)
+            // 맨 앞자리가 0이 되지 않도록 보장
+            while answer.isEmpty && digit == 0 {
+                digit = Int.random(in: 0...9)
+            }
             // 정답 숫자 중복 제거
             if !answer.contains(digit) {
                 answer.append(digit)
