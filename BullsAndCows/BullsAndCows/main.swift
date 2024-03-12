@@ -12,6 +12,8 @@ game.mainMenu()
 
 // MARK: - 야구 게임 클래스
 class BaseballGame {
+    // MARK: -  게임 기록 인스턴스 생성
+    let gameRecord = gameRecordManager()
     // MARK: -  게임 메뉴 함수
     func mainMenu() {
         while true{
@@ -23,7 +25,7 @@ class BaseballGame {
                 case "1":
                     start()
                 case "2":
-                    start()
+                    gameRecord.printRecord()
                 case "3":
                     exit(0)
                 default:
@@ -35,6 +37,8 @@ class BaseballGame {
     // MARK: -  게임 시작 함수
     func start() {
         let answer = makeAnswer()
+        // 시도 횟수 기록하는 변수 count
+        var count = 0
         print("정답: \(answer)")
         // MARK: - 게임 진행 로직
         repeat {
@@ -55,6 +59,8 @@ class BaseballGame {
                             balls += 1
                         }
                     }
+                    //시도 횟수 증가
+                    count += 1
                     // 둘다 0일 경우 Nothing 출력
                     if strikes == 0 && balls == 0 {
                         print("Nothing")
@@ -66,6 +72,8 @@ class BaseballGame {
                     // 3스트라이크일 경우 정답 출력
                     if strikes == 3 {
                         print("축하합니다! 정답을 맞추셨습니다")
+                        // 정답을 맞추면 시도횟수를 기록
+                        gameRecord.addRecord(record: "\(count)번")
                         break
                     }
                 }
@@ -98,6 +106,18 @@ class BaseballGame {
         
         return answer
     }
-    
 }
-
+// MARK: -  게임 기록 인스턴스 클래스
+class gameRecordManager{
+    var gameRecord = [String]()
+    // MARK: -  게임 기록 추가 함수
+    func addRecord(record: String){
+        gameRecord.append(record)
+    }
+    // MARK: -  게임 기록 출력 함수
+    func printRecord(){
+        for (index, record) in gameRecord.enumerated(){
+            print("\(index+1)번째 게임 : 시도 횟수 - \(record)")
+        }
+    }
+}
