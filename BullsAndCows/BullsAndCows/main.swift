@@ -64,9 +64,12 @@ class BaseballGame {
     func makeAnswer() -> [Int] {
         var answer = [Int]()
         
-        for _ in 0..<3 {
-            let digit = Int.random(in: 1...9)
-            answer.append(digit)
+        while answer.count < 3 {
+            let digit = Int.random(in: 0...9)
+            // 정답 숫자 중복 제거
+            if !answer.contains(digit) {
+                answer.append(digit)
+            }
         }
         
         return answer
