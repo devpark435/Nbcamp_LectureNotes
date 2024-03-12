@@ -27,8 +27,11 @@ class BaseballGame {
                 case "2":
                     gameRecord.printRecord()
                 case "3":
+                    print("< 숫자 야구 게임을 종료합니다 >")
+                    // 게임 종료
                     exit(0)
                 default:
+                    // 잘못된 입력값일 경우
                     print("잘못된 입력입니다. 1, 2, 3 중 하나를 입력하세요.")
                 }
             }
