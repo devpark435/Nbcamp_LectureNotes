@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {    
+class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
     var todos: [Todo] = []
@@ -19,9 +19,8 @@ class ViewController: UIViewController {
         addTarget()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "TodoCell")
         let todo1 = Todo(id: 1, title: "할 일 1", isCompleted: false)
-        let todo2 = Todo(id: 1, title: "할 일 1", isCompleted: false)
+        let todo2 = Todo(id: 2, title: "할 일 2", isCompleted: true)
         todos = [todo1, todo2]
     }
     func setLayout(){
@@ -57,7 +56,6 @@ class ViewController: UIViewController {
         
         present(alertController, animated: true, completion: nil)
     }
-    
 }
 extension ViewController : UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -65,14 +63,24 @@ extension ViewController : UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as? TodoCell else {
+            return UITableViewCell()
+        }
         
         // 각 셀에 해당하는 Todo 데이터 가져오기
-        let todo = todos[indexPath.row]
+        var todo = todos[indexPath.row]
         
         // 셀에 Todo 제목 표시
-        cell.textLabel?.text = todo.title
-        
+        cell.titleLabel.text = todo.title
+        // 셀에 Todo 완료 여부 표시
+        cell.switchButton.isOn = todo.isCompleted
+        if cell.switchButton.isOn {
+            cell.titleLabel?.textColor = .blue
+        } else {
+            cell.titleLabel?.textColor = .black
+        }
+        // 셀에 Todo 데이터 저장
+        cell.todo = todo
         return cell
     }
 }
