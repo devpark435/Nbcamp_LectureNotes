@@ -7,23 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        todos.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath)
-        
-        // 각 셀에 해당하는 Todo 데이터 가져오기
-        let todo = todos[indexPath.row]
-        
-        // 셀에 Todo 제목 표시
-        cell.textLabel?.text = todo.title
-        
-        return cell
-    }
-    
+class ViewController: UIViewController {    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
     var todos: [Todo] = []
@@ -73,6 +57,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         present(alertController, animated: true, completion: nil)
     }
-
+    
 }
-
+extension ViewController : UITableViewDataSource, UITableViewDelegate{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        todos.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath)
+        
+        // 각 셀에 해당하는 Todo 데이터 가져오기
+        let todo = todos[indexPath.row]
+        
+        // 셀에 Todo 제목 표시
+        cell.textLabel?.text = todo.title
+        
+        return cell
+    }
+}
