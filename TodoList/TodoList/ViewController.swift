@@ -40,7 +40,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         todos = [todo1, todo2]
     }
     func setLayout(){
-        addButton.titleLabel?.text = "Add"
+        addButton.setTitle("Add Todo", for: .normal)
     }
     
 }
