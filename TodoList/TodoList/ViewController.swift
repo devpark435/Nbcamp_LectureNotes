@@ -66,18 +66,18 @@ extension ViewController : UITableViewDataSource, UITableViewDelegate{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as? TodoCell else {
             return UITableViewCell()
         }
-        
         // 각 셀에 해당하는 Todo 데이터 가져오기
-        var todo = todos[indexPath.row]
+        let todo = todos[indexPath.row]
         
-        // 셀에 Todo 제목 표시
-        cell.titleLabel.text = todo.title
         // 셀에 Todo 완료 여부 표시
         cell.switchButton.isOn = todo.isCompleted
-        if cell.switchButton.isOn {
-            cell.titleLabel?.textColor = .blue
+        // 완료 여부에 따른 텍스트, 텍스트 색상 변경
+        if todo.isCompleted {
+            cell.titleLabel.textColor = .gray
+            cell.titleLabel.text = todo.title + " 완료👍"
         } else {
-            cell.titleLabel?.textColor = .black
+            cell.titleLabel.textColor = .black
+            cell.titleLabel.text = todo.title
         }
         // 셀에 Todo 데이터 저장
         cell.todo = todo
