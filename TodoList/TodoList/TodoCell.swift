@@ -14,8 +14,34 @@ class TodoCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var categoryColor: UIView!
     var todo: Todo?
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupConstraints()
+    }
     
-    
+    //MARK: - 제약조건 설정
+    private func setupConstraints() {
+        // categoryColor의 제약 조건 설정
+        categoryColor.snp.makeConstraints {
+            $0.leading.equalToSuperview()
+            $0.height.equalToSuperview()
+            $0.width.equalTo(5)
+        }
+        
+        // titleLabel의 제약 조건 설정
+        titleLabel.snp.makeConstraints {
+            $0.leading.equalTo(categoryColor.snp.trailing).offset(5)
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalTo(switchButton.snp.leading).offset(-20)
+        }
+        
+        // switchButton의 제약 조건 설정
+        switchButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview().offset(-10)
+            $0.centerY.equalToSuperview()
+        }
+    }
+    //MARK: - 스위치 버튼 값 변경 시 호출되는 메서드
     @IBAction func switchValueChanged(_ sender: UISwitch) {
         todo?.isCompleted = sender.isOn // Todo 모델 업데이트
         // 스위치 상태에 따라 텍스트 색상 변경
