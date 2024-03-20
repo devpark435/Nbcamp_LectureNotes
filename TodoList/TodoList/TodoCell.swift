@@ -20,6 +20,7 @@ class TodoCell: UITableViewCell {
         setupConstraints()
         setUI()
     }
+    //MARK: - UI 설정
     private func setUI(){
         dateLabel.do {
             $0.font = UIFont.systemFont(ofSize: 14)
