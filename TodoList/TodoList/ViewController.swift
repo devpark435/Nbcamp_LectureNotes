@@ -75,9 +75,11 @@ extension ViewController : UITableViewDataSource, UITableViewDelegate{
         if todo.isCompleted {
             cell.titleLabel.textColor = .gray
             cell.titleLabel.text = todo.title + " 완료👍"
+            cell.categoryColor.backgroundColor = .green
         } else {
             cell.titleLabel.textColor = .black
             cell.titleLabel.text = todo.title
+            cell.categoryColor.backgroundColor = .white
         }
         // 셀에 Todo 데이터 저장
         cell.todo = todo
