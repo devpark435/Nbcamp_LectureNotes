@@ -13,18 +13,27 @@ class TodoCell: UITableViewCell {
     @IBOutlet weak var switchButton: UISwitch!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var categoryColor: UIView!
+    @IBOutlet weak var dateLabel: UILabel!
     var todo: Todo?
     override func awakeFromNib() {
         super.awakeFromNib()
         setupConstraints()
+        setUI()
     }
-    
+    private func setUI(){
+        dateLabel.do {
+            $0.font = UIFont.systemFont(ofSize: 14)
+            $0.textColor = .gray
+            $0.textAlignment = .right
+        }
+    }
     //MARK: - 제약조건 설정
     private func setupConstraints() {
         // categoryColor의 제약 조건 설정
         categoryColor.snp.makeConstraints {
             $0.leading.equalToSuperview()
-            $0.height.equalToSuperview()
+            $0.height.equalTo(contentView.snp.height).multipliedBy(0.9)
+            $0.centerY.equalToSuperview()
             $0.width.equalTo(5)
         }
         
@@ -32,7 +41,12 @@ class TodoCell: UITableViewCell {
         titleLabel.snp.makeConstraints {
             $0.leading.equalTo(categoryColor.snp.trailing).offset(5)
             $0.centerY.equalToSuperview()
-            $0.trailing.equalTo(switchButton.snp.leading).offset(-20)
+        }
+        
+        // dataLabel의 제약 조건 설정
+        dateLabel.snp.makeConstraints {
+            $0.trailing.equalTo(switchButton.snp.leading).offset(-10)
+            $0.centerY.equalToSuperview()
         }
         
         // switchButton의 제약 조건 설정
@@ -49,12 +63,12 @@ class TodoCell: UITableViewCell {
             titleLabel.textColor = .gray
             todo?.isCompleted = true
             titleLabel.text =  "\(todo?.title ?? "") 완료👍"
-            categoryColor.backgroundColor = .green
+            categoryColor.backgroundColor = .red
         } else {
             titleLabel.textColor = .black
             todo?.isCompleted = false
             titleLabel.text =  "\(todo?.title ?? "")"
-            categoryColor.backgroundColor = .white
+            categoryColor.backgroundColor = .green
         }
         
     }

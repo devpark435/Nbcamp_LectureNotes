@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import SnapKit
+import Then
 
 class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -19,8 +21,9 @@ class ViewController: UIViewController {
         addTarget()
         tableView.dataSource = self
         tableView.delegate = self
-        let todo1 = Todo(id: 1, title: "할 일 1", isCompleted: false)
-        let todo2 = Todo(id: 2, title: "할 일 2", isCompleted: true)
+        let date = Date()
+        let todo1 = Todo(id: 1, title: "할 일 1", isCompleted: false, date: date)
+        let todo2 = Todo(id: 2, title: "할 일 2", isCompleted: true, date: date)
         todos = [todo1, todo2]
     }
     func setLayout(){
@@ -43,9 +46,10 @@ class ViewController: UIViewController {
                 // 입력된 내용이 없을 경우 처리
                 return
             }
+            let currentDate = Date()
             
             // 입력된 내용을 처리하는 로직 추가
-            let newTodo = Todo(id: (self?.todos.count ?? 0) + 1, title: newTodoTitle, isCompleted: false)
+            let newTodo = Todo(id: (self?.todos.count ?? 0) + 1, title: newTodoTitle, isCompleted: false, date: currentDate)
             self?.todos.append(newTodo)
             self?.tableView.reloadData()
         }
@@ -71,15 +75,20 @@ extension ViewController : UITableViewDataSource, UITableViewDelegate{
         
         // 셀에 Todo 완료 여부 표시
         cell.switchButton.isOn = todo.isCompleted
+        // 셀에 date 표시
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd HH:mm"
+        let formattedDateString = dateFormatter.string(from: todo.date)
+        cell.dateLabel.text = formattedDateString
         // 완료 여부에 따른 텍스트, 텍스트 색상 변경
         if todo.isCompleted {
             cell.titleLabel.textColor = .gray
             cell.titleLabel.text = todo.title + " 완료👍"
-            cell.categoryColor.backgroundColor = .green
+            cell.categoryColor.backgroundColor = .red
         } else {
             cell.titleLabel.textColor = .black
             cell.titleLabel.text = todo.title
-            cell.categoryColor.backgroundColor = .white
+            cell.categoryColor.backgroundColor = .green
         }
         // 셀에 Todo 데이터 저장
         cell.todo = todo
@@ -89,7 +98,7 @@ extension ViewController : UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             todos.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.deleteRows(at: [indexPath], with: .left)
         }
     }
     

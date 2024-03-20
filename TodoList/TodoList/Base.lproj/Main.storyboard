@@ -25,14 +25,15 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="yxM-BP-oBU">
-                                <rect key="frame" x="15" y="102" width="363" height="706"/>
+                                <rect key="frame" x="10" y="102" width="373" height="706"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TodoCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoCell" id="HhN-ue-Tjo" customClass="TodoCell" customModule="TodoList" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="363" height="44.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="50" width="373" height="44.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HhN-ue-Tjo" id="Jk9-xW-akY">
-                                            <rect key="frame" x="0.0" y="0.0" width="363" height="44.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="373" height="44.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vBp-DF-rYC">
@@ -43,14 +44,21 @@
                                                     </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hgw-NE-uMq">
-                                                    <rect key="frame" x="33" y="9" width="253" height="26"/>
+                                                    <rect key="frame" x="33" y="9" width="109" height="26"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KMf-Bt-ugd">
-                                                    <rect key="frame" x="20" y="0.0" width="5" height="45"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHU-Gi-pXG">
+                                                    <rect key="frame" x="244" y="12" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y8l-rX-elg">
+                                                    <rect key="frame" x="0.0" y="0.0" width="4" height="45"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 </view>
@@ -58,7 +66,8 @@
                                         </tableViewCellContentView>
                                         <accessibility key="accessibilityConfiguration" identifier="TodoCell"/>
                                         <connections>
-                                            <outlet property="categoryColor" destination="KMf-Bt-ugd" id="1ly-e6-JVt"/>
+                                            <outlet property="categoryColor" destination="y8l-rX-elg" id="jWf-V9-A70"/>
+                                            <outlet property="dateLabel" destination="SHU-Gi-pXG" id="vEv-FH-zXs"/>
                                             <outlet property="switchButton" destination="vBp-DF-rYC" id="kbN-vl-SEu"/>
                                             <outlet property="titleLabel" destination="Hgw-NE-uMq" id="ZQe-c0-dDX"/>
                                         </connections>
@@ -69,12 +78,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="yxM-BP-oBU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="QqL-B5-lXe"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yxM-BP-oBU" secondAttribute="bottom" constant="10" id="SB1-EB-TXG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yxM-BP-oBU" secondAttribute="trailing" constant="10" id="SFf-HB-zXO"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yNo-IW-hAt" secondAttribute="trailing" constant="15" id="U5t-VR-CDm"/>
                             <constraint firstItem="yNo-IW-hAt" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="XJc-5Z-uAo"/>
-                            <constraint firstItem="yxM-BP-oBU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="g4f-7R-IR4"/>
                             <constraint firstItem="yxM-BP-oBU" firstAttribute="top" secondItem="yNo-IW-hAt" secondAttribute="bottom" constant="8" symbolic="YES" id="n7Y-P8-kqS"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yxM-BP-oBU" secondAttribute="trailing" constant="15" id="r09-wK-4gW"/>
                         </constraints>
                     </view>
                     <connections>
