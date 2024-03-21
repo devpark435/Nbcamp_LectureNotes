@@ -51,7 +51,12 @@ class ViewController: UIViewController {
             // 입력된 내용을 처리하는 로직 추가
             let newTodo = Todo(id: (self?.todos.count ?? 0) + 1, title: newTodoTitle, isCompleted: false, date: currentDate)
             self?.todos.append(newTodo)
-            self?.tableView.reloadData()
+            // 새로 추가된 행의 IndexPath 가져오기
+                let newIndexPath = IndexPath(row: (self?.todos.count ?? 0) - 1, section: 0)
+                
+                // 새로운 행을 애니메이션과 함께 삽입
+                self?.tableView.insertRows(at: [newIndexPath], with: .right)
+//            self?.tableView.reloadData()
         }
         alertController.addAction(addAction)
         
