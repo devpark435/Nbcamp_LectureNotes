@@ -19,6 +19,12 @@ class TodoCell: UITableViewCell {
         super.awakeFromNib()
         setupConstraints()
         setUI()
+        setCellUI()
+    }
+    private func setCellUI(){
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.5
+        layer.shadowRadius = 10
     }
     //MARK: - UI 설정
     private func setUI(){
@@ -33,7 +39,7 @@ class TodoCell: UITableViewCell {
         // categoryColor의 제약 조건 설정
         categoryColor.snp.makeConstraints {
             $0.leading.equalToSuperview()
-            $0.height.equalTo(contentView.snp.height).multipliedBy(0.9)
+            $0.height.equalToSuperview()
             $0.centerY.equalToSuperview()
             $0.width.equalTo(5)
         }
