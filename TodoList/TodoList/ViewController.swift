@@ -50,13 +50,14 @@ class ViewController: UIViewController {
             
             // 입력된 내용을 처리하는 로직 추가
             let newTodo = Todo(id: (self?.todos.count ?? 0) + 1, title: newTodoTitle, isCompleted: false, date: currentDate)
-            self?.todos.append(newTodo)
+            // todos 배열에 새로운 할 일 추가 append => insert
+            self?.todos.insert(newTodo, at: 0)
+
             // 새로 추가된 행의 IndexPath 가져오기
-                let newIndexPath = IndexPath(row: (self?.todos.count ?? 0) - 1, section: 0)
-                
-                // 새로운 행을 애니메이션과 함께 삽입
-                self?.tableView.insertRows(at: [newIndexPath], with: .right)
-//            self?.tableView.reloadData()
+            let newIndexPath = IndexPath(row: 0, section: 0)
+
+            // 새로운 행을 애니메이션과 함께 삽입
+            self?.tableView.insertRows(at: [newIndexPath], with: .right)
         }
         alertController.addAction(addAction)
         
@@ -97,6 +98,8 @@ extension ViewController : UITableViewDataSource, UITableViewDelegate{
         }
         // 셀에 Todo 데이터 저장
         cell.todo = todo
+        // 셀 layoutCustom
+        cell.layer.cornerRadius = 10
         return cell
     }
     // Cell 삭제 기능
