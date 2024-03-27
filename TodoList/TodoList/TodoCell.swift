@@ -27,6 +27,7 @@ class TodoCell: UITableViewCell {
             $0.textColor = .gray
             $0.textAlignment = .right
         }
+        layer.cornerRadius = 10
     }
     //MARK: - 제약조건 설정
     private func setupConstraints() {
