@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         todos = [todo1, todo2]
     }
     func setLayout(){
-        addButton.setTitle("Add Todo", for: .normal)
+        addButton.setTitle("+", for: .normal)
     }
     func addTarget(){
         addButton.addTarget(self, action: #selector(addTodoTap), for: .touchUpInside)
@@ -98,8 +98,7 @@ extension ViewController : UITableViewDataSource, UITableViewDelegate{
         }
         // 셀에 Todo 데이터 저장
         cell.todo = todo
-        // 셀 layoutCustom
-        cell.layer.cornerRadius = 10
+        
         return cell
     }
     // Cell 삭제 기능
