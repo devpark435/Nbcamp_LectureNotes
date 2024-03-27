@@ -95,6 +95,7 @@
                     <connections>
                         <outlet property="addButton" destination="CGg-QH-QRd" id="NqN-ug-u7M"/>
                         <outlet property="tableView" destination="yxM-BP-oBU" id="1sr-xg-H6R"/>
+                        <outlet property="todoProgressView" destination="BGl-5s-2mf" id="FLa-Pf-Fch"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
