@@ -12,6 +12,7 @@ import Then
 class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var todoProgressView: UIProgressView!
     var todos: [Todo] = []
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,15 @@ class ViewController: UIViewController {
     func addTarget(){
         addButton.addTarget(self, action: #selector(addTodoTap), for: .touchUpInside)
     }
+    //MARK: - ProgressView Update
+    func updateProgressView() {
+        let totalCount = todos.count
+        let completedCount = todos.filter { $0.isCompleted }.count
+        
+        let progress = Float(completedCount) / Float(totalCount)
+        todoProgressView.progress = progress
+    }
+    //MARK: - Add Todo Button Action
     @objc func addTodoTap() {
         let alertController = UIAlertController(title: "할 일 추가", message: "할 일을 입력하세요", preferredStyle: .alert)
         
@@ -58,6 +68,8 @@ class ViewController: UIViewController {
 
             // 새로운 행을 애니메이션과 함께 삽입
             self?.tableView.insertRows(at: [newIndexPath], with: .right)
+            // ProgressView 업데이트
+            self?.updateProgressView()
         }
         alertController.addAction(addAction)
         
@@ -67,6 +79,7 @@ class ViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
 }
+//MARK: - TableView DataSource, Delegate
 extension ViewController : UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         todos.count
