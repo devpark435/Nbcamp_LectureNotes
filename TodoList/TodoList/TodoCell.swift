@@ -19,12 +19,6 @@ class TodoCell: UITableViewCell {
         super.awakeFromNib()
         setupConstraints()
         setUI()
-        setCellUI()
-    }
-    private func setCellUI(){
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.5
-        layer.shadowRadius = 10
     }
     //MARK: - UI 설정
     private func setUI(){
@@ -50,17 +44,27 @@ class TodoCell: UITableViewCell {
             $0.centerY.equalToSuperview()
         }
         
-        // dataLabel의 제약 조건 설정
+        // dateLabel의 제약 조건 설정
         dateLabel.snp.makeConstraints {
-            $0.trailing.equalTo(switchButton.snp.leading).offset(-10)
+            $0.leading.equalTo(titleLabel.snp.trailing).offset(10)
             $0.centerY.equalToSuperview()
         }
         
         // switchButton의 제약 조건 설정
         switchButton.snp.makeConstraints {
+            $0.leading.equalTo(dateLabel.snp.trailing).offset(10)
             $0.trailing.equalToSuperview().offset(-10)
             $0.centerY.equalToSuperview()
         }
+        
+        // titleLabel의 압축 저항 우선순위 설정
+        titleLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        
+        // dateLabel의 허깅 우선순위 설정
+        dateLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        
+        // switchButton의 허깅 우선순위 설정
+        switchButton.setContentHuggingPriority(.required, for: .horizontal)
     }
     //MARK: - 스위치 버튼 값 변경 시 호출되는 메서드
     @IBAction func switchValueChanged(_ sender: UISwitch) {
